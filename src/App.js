@@ -43,12 +43,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/"
+            path="/newrepo"
             element={<Home fetchQuestions={fetchQuestions} />}
           ></Route>
 
           <Route
-            path="/quiz"
+            path="/newrepo/quiz"
             element={
               <Quiz
                 questions={questions}
@@ -60,7 +60,7 @@ function App() {
             }
           ></Route>
 
-          <Route path="/result" element={<Results />}></Route>
+          <Route path="/newrepo/result" element={<Results />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

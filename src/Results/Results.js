@@ -11,7 +11,7 @@ export const Results = () => {
   const navigate = useNavigate();
 
   if (!submitted) {
-    navigate("/")
+    navigate("/newrepo/")
   }
 
   const calculateScore = () => {
@@ -26,7 +26,7 @@ export const Results = () => {
       }
     }
 
-    navigate("/result")
+    navigate("/newrepo/result")
 
     return finalScore;
   }
@@ -53,7 +53,7 @@ export const Results = () => {
     )
   }
   { submitted && <div className='score' style={{ backgroundColor: finalScore <= 1 ? "red" : finalScore <= 3 ? "yellow": "green" }}>You scored {finalScore} out of 5</div> }
-  <button className="play-another-game" onClick={() => navigate("/")} >
+  <button className="play-another-game" onClick={() => navigate("/newrepo/")} >
     Play Another Quiz
   </button>
 </div>

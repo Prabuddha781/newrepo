@@ -16,7 +16,7 @@ export const Quiz = ({questions, fetching}) => {
 
   useEffect(() => {
     if (questions === undefined && fetching === false) {
-      navigate("/")
+      navigate("/newrepo/")
     }
   }, [])
 
@@ -32,7 +32,7 @@ export const Quiz = ({questions, fetching}) => {
        }
     }
    
-    navigate("/result", {
+    navigate("/newrepo/result", {
       state: {
         questions: questions, 
         selectedAnswers: selectedAnswers, 

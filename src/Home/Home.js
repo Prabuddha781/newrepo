@@ -25,7 +25,7 @@ export const Home = (props) => {
     } else {
       setError(false);
       props.fetchQuestions(category, difficulty);
-      navigate("/quiz");
+      navigate("/newrepo/quiz");
       //history.push('/quiz')
     }
   };

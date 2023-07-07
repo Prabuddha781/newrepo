@@ -37,11 +37,12 @@ export const Results = () => {
   <div className="quiz">
   {
     questions.map((question,i) => 
-      <div className='questions'>
+      <div key={i} className='questions'>
         <Questions
         key={i} 
         question={question.question}
         correctAnswer={question.correct_answer}
+        all_answers={question.all_answers}
         // answers={question.all_answers}
         idx={i}
         selectedAnswers={selectedAnswers}

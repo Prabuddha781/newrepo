@@ -4,14 +4,13 @@ import "./Questions.css";
 
 export const Questions = ({
   question,
-  incorrect_answers,
+  all_answers,
   correctAnswer,
   setSelectedAnswers,
   selectedAnswers,
   idx,
   submitted,
 }) => {
-  let all_answers = [...incorrect_answers, correctAnswer];
 
   const handleCheck = (answer) => {
     if (submitted) {

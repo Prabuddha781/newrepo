@@ -3,7 +3,9 @@ import { Form } from "antd";
 import "./Home.css";
 import Categories from "../Data/Categories";
 import { useNavigate } from "react-router-dom";
-//import { unstable_HistoryRouter } from "react-router-dom"
+//import { unstable_HistoryRouter } from "react-router-dom";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
+
 export const Home = (props) => {
   // const [data, setData] = useState([]);
   const [category, setCat] = useState(9);
@@ -28,56 +30,70 @@ export const Home = (props) => {
     }
   };
   return (
-    <div>
-      <Form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-        }}
-      >
-        <Form.Item label="Difficulty">
-          <select
-            id="difficultySelect"
-            value={difficulty}
-            onChange={(e) => setDifficulty(e.target.value)}
-            className="form-select"
-            aria-label="Default select example"
-          >
-            {difficulty_list.map((item) => {
-              return (
-                <option placeholder="easy" key={item} value={item}>
-                  {item.charAt(0).toUpperCase() + item.substring(1)}
-                </option>
-              );
-            })}
-          </select>
-        </Form.Item>
-        <Form.Item label="Category">
-          <select
+    <div className="loadingContainer">
+      <label className="loadingContainer">
+        {error && (
+          <ErrorMessage>
+            Please Fill out the Difficulty and Category
+          </ErrorMessage>
+        )}
+        
+        <div className="row">
+          <div>Difficulty</div>
+          <div>
+            <select
+              id="difficultySelect"
+              value={difficulty}
+              onChange={(e) => setDifficulty(e.target.value)}
+              className="form-select"
+              aria-label="Default select example"
+            >
+              {difficulty_list.map((item) => {
+                return (
+                  <option
+                  
+                    placeholder="easy"
+                    key={item}
+                    value={item}
+                    // onChange={setCat(item.value)}
+                  >
+                    {item.charAt(0).toUpperCase() + item.substring(1,)}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </div>
+      </label>
+      <label className="loadingContainer">
+        <div className="row">
+          <div>Category</div>
+          <div>
+            <select
             id="categorySelect"
-            value={category}
-            onChange={(e) => setCat(e.target.value)}
-            className="form-select "
-            aria-label="Default select example"
-          >
-            {Categories.map((level, idx) => {
-              return (
-                <option
-                  value={level.value}
-                  placeholder="General knowledge"
-                  key={idx}
-                >
-                  {level.category}
-                </option>
-              );
-            })}
-          </select>
-        </Form.Item>
-      </Form>
+              value={category}
+              onChange={(e) => setCat(e.target.value)}
+              className="form-select "
+              aria-label="Default select example"
+            >
+              {Categories.map((level, idx) => {
+                return (
+                  <option
+                    value={level.value}
+                    placeholder="General knowledge"
+                    key={idx}
+                  >
+                    {level.category}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </div>
+      </label>
       <div>
         <button
-          id="createBtn"
+        id="createBtn"
           className=" btn btn-primary"
           size="small"
           onClick={handleSubmit}

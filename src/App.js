@@ -7,6 +7,14 @@ import "./Home/Home.css"
 import { Quiz } from "./Quiz/Quiz";
 import { Results } from "./Results/Results";
 
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 function App() {
   const [questions, setQuestions] = useState();
   const [score, setScore] = useState(0);
@@ -14,11 +22,16 @@ function App() {
 
   const fetchQuestions = async (category = "", difficulty = "") => {
     setFetching(true);
+
+    console.log(`https://opentdb.com/api.php?amount=5${category && `&category=${category}`}${difficulty && `&difficulty=${difficulty}`}&type=multiple`)
     const { data } = await axios.get(
-      `https://opentdb.com/api.php?amount=5${
-        category && `&category=${category}`
-      }${difficulty && `&difficulty=${difficulty}`}&type=multiple`
+      `https://opentdb.com/api.php?amount=5${category && `&category=${category}`}${difficulty && `&difficulty=${difficulty}`}&type=multiple`
     );
+
+    console.log(data.results)
+    for (let i = 0; i < 5; i++){
+      data.results[i].all_answers = shuffleArray([data.results[i].correct_answer, ...data.results[i].incorrect_answers])
+    }
 
     setQuestions(JSON.parse(JSON.stringify(data.results)));
     setFetching(false);

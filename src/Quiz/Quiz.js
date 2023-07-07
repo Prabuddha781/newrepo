@@ -3,7 +3,7 @@ import React, {  useState, useEffect } from 'react'
 import "./Quiz.css"
 import "../Questions/Questions.css";
 import { Questions } from '../Questions/Questions'
-//mport { ErrorMessage } from '../ErrorMessage/ErrorMessage'
+
 import { useNavigate } from "react-router-dom";
 
 export const Quiz = ({questions, fetching}) => {
@@ -12,7 +12,6 @@ export const Quiz = ({questions, fetching}) => {
 // const [currentQues,setCurrentQues] = useState(0)
 // 
 //shuffling an array
-  console.log(questions)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,11 +56,10 @@ export const Quiz = ({questions, fetching}) => {
             key={i} 
             question={question.question}
             correctAnswer={question.correct_answer}
-            // answers={question.all_answers}
             idx={i}
             setSelectedAnswers={setSelectedAnswers}
             selectedAnswers={selectedAnswers}
-            incorrect_answers={question.incorrect_answers}
+            all_answers={question.all_answers}
             submitted={submitted}
           />  
         )
